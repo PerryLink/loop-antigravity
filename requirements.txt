@@ -1,0 +1,15 @@
+# loop-antigravity 依赖声明
+# Python >= 3.10（目标 3.11+）
+
+# Gemini SDK -- agy CLI 不可用时的回退路径
+google-genai==1.0.0
+
+# HTTP 客户端 -- Gemini File API、Cloud Storage 等
+requests==2.31
+
+# state.json schema 验证
+jsonschema==4.20
+
+# --- 测试依赖 ---
+pytest==8.0
+pytest-cov==5.0

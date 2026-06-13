@@ -1,0 +1,121 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "loop-antigravity"
+version = "0.1.0"
+description = "Goal-driven autonomous closed-loop coding agent powered by Google Antigravity"
+authors = [{ name = "loop-antigravity authors" }]
+license = { text = "Apache-2.0" }
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Code Generators",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "pytest-mock>=3.14",
+    "pytest-timeout>=2.3",
+    "ruff>=0.5",
+    "mypy>=1.11",
+]
+gcp = [
+    "google-generativeai>=0.8",
+    "google-auth>=2.30",
+    "google-cloud-storage>=2.18",
+]
+build = [
+    "pyinstaller>=6.0",
+]
+
+[project.scripts]
+loop-antigravity = "loop_antigravity.cli:main"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes
+    "I",      # isort
+    "B",      # flake8-bugbear
+    "C4",     # flake8-comprehensions
+    "UP",     # pyupgrade
+    "SIM",    # flake8-simplify
+]
+ignore = [
+    "E501",   # line too long (handled by formatter)
+    "B008",   # do not perform function calls in argument defaults
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "S108"]  # allow assert and hardcoded tmp paths in tests
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unreachable = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+disallow_any_generics = true
+no_implicit_optional = true
+check_untyped_defs = true
+warn_return_any = true
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = [
+    "google.generativeai.*",
+    "google.auth.*",
+    "google.cloud.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--strict-markers",
+    "--tb=short",
+    "--cov=loop_antigravity",
+    "--cov-report=term-missing",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+timeout = 30
+
+[tool.coverage.run]
+source = ["loop_antigravity"]
+omit = ["tests/*", "loop_antigravity/cli.py"]
+
+[tool.coverage.report]
+fail_under = 82
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+]
