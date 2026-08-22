@@ -1,4 +1,5 @@
 # loop-antigravity — Goal-Driven Autonomous Dev Loop for Google Antigravity / Gemini
+[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/loop-antigravity)
 
 *A [**Loop Engineering**](https://github.com/PerryLink/loop-everything) autonomous coding loop engine — turn goals into production code.*
 
