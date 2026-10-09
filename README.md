@@ -33,7 +33,8 @@
 
 ```bash
 # Prerequisites: Python >= 3.11, agy CLI installed, GCP project configured
-pip install loop-antigravity
+pip install "git+https://github.com/PerryLink/loop-antigravity.git"
+# (installs from source; not yet on PyPI)
 
 # Or clone source
 git clone https://github.com/PerryLink/loop-antigravity.git
@@ -114,7 +115,8 @@ A: **agy CLI** — best for GCP-native workflows, supports full `stream-json` ou
 
 ```bash
 # 环境要求: Python >= 3.11, agy CLI 已安装, GCP 项目已配置
-pip install loop-antigravity
+pip install "git+https://github.com/PerryLink/loop-antigravity.git"
+# （PyPI 未发布，源码直装）
 
 # 或克隆源码
 git clone https://github.com/PerryLink/loop-antigravity.git
